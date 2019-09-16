@@ -1,0 +1,7 @@
+using CongressMarks as ddl;
+AccessPolicy dcl_role{
+	role OCR_RESTRICTED{
+		grant select on ddl.VIEW_LINES 
+			where FILENAME IN ($env.user.FILENAME);
+	};
+};

@@ -1,0 +1,56 @@
+ID: xsa-ocr
+_schema-version: '2.1'
+description: OCR demo application
+version: 0.1.0
+modules:
+  - name: ocr-node
+    type: nodejs
+    path: node
+    provides:
+      - name: node_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: hdi_ocr_db
+      - name: jeffauthorization-uaa
+  - name: ocr-ui5
+    type: html5
+    path: ui5
+    requires:
+      - name: ocr-db
+      - name: xsjs_api
+        properties:
+          name: xsjs-be
+          url: '~{url} '
+          forwardAuthToken: true
+        group: destinations
+      - name: jeffauthorization-uaa
+  - name: ocr-db
+    type: hdb
+    path: db
+    requires:
+      - name: hdi_ocr_db
+        properties:
+          TARGET_CONTAINER: '~{hdi-container-name_2}'
+  - name: ocr-xsjs
+    type: nodejs
+    path: xsjs
+    provides:
+      - name: xsjs_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: hdi_ocr_db
+      - name: jeffauthorization-uaa
+resources:
+  - name: hdi_ocr_db
+    parameters:
+      config:
+         schema: ocr_app
+    properties:
+      hdi-container-name_2: '${service-name}'
+    type: com.sap.xs.hdi-container
+  - name: jeffauthorization-uaa
+    type: com.sap.xs.uaa
+    parameters:
+      path: /xs-security.json

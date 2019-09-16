@@ -1,0 +1,27 @@
+{
+	"xsappname": "xsa-ocr",
+	"scopes": [{
+		"name": "$XSAPPNAME.Read",
+		"description": "Read data"
+	}, {
+		"name": "$XSAPPNAME.Edit",
+		"description": "Edit data"
+	}, {
+		"name": "$XSAPPNAME.Run",
+		"description": "Run the app"
+	}],
+	"attributes": [{
+		"name": "FILENAME",
+		"description": "Field restriction",
+		"valueType": "string"
+	}],
+	"role-templates": [{
+		"name": "OCR_READER",
+		"description": "Template for reading sandbox",
+		"scope-references": ["$XSAPPNAME.Read"],
+		"attribute-references": ["FILENAME"]
+	}, {
+		"name": "OCR_ADMIN",
+		"scope-references": ["$XSAPPNAME.Run", "$XSAPPNAME.Read", "$XSAPPNAME.Edit"]
+	}]
+}

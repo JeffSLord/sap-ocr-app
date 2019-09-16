@@ -1,0 +1,6 @@
+service{
+	"CongressMarks.LINES" as "CongressMarksLines";
+	"CongressMarks.PAGES" as "CongressMarksPages";
+	"CongressMarks.SPLIT" as "CongressMarksSplit";
+	"CongressMarks.VIEW_LINES" as "CongressMarksViewLines";
+}

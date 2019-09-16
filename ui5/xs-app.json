@@ -1,0 +1,17 @@
+{
+	"welcomeFile": "webapp/index.html",
+	"authenticationMethod": "route",
+	"routes": [
+	{
+		"source": "(.*).xsodata(.*)",
+		"destination": "xsjs-be",
+		"authenticationType": "xsuaa",
+		"scope": "$XSAPPNAME.Read"
+	}, 
+	{
+		"source": "(.*).xsjs(.*)",
+		"destination": "xsjs-be",
+		"authenticationType": "xsuaa",
+		"scope": "$XSAPPNAME.Read"
+	}]
+}

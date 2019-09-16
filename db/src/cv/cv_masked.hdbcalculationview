@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="cv_masked" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="cv"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="OCR.LINES">
+    <resourceUri>OCR.LINES</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="OCR.LINES">
+  <attributes>
+    <attribute id="FILENAME" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FILENAME"/>
+      <keyMapping columnObjectName="OCR.LINES" columnName="FILENAME"/>
+    </attribute>
+    <attribute id="PAGENUMBER" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PAGENUMBER"/>
+      <keyMapping columnObjectName="OCR.LINES" columnName="PAGENUMBER"/>
+    </attribute>
+    <attribute id="LINENUMBER" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LINENUMBER"/>
+      <keyMapping columnObjectName="OCR.LINES" columnName="LINENUMBER"/>
+    </attribute>
+    <attribute id="TEXT" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TEXT"/>
+      <maskingExpression>'xxxxx'</maskingExpression>
+      <keyMapping columnObjectName="OCR.LINES" columnName="TEXT"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

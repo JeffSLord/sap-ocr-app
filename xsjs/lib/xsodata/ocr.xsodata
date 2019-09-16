@@ -1,0 +1,8 @@
+service{
+	"OCR.LINES" as "Lines"
+	create using "xsjs:line_service.xsjslib::Create"
+	events(before "xsjs:line_service.xsjslib::BeforeCreate");
+	"OCR.PAGES" as "Pages" 
+	create using "xsjs:page_service.xsjslib::Create"
+	events(before "xsjs:page_service.xsjslib::BeforeCreate");
+}

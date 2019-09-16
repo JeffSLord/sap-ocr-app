@@ -1,0 +1,144 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" controllerName="ocr.ui5.controller.View1" displayBlock="true">
+	<App id="idAppControl">
+		<pages>
+			<Page title="{appModel>/appName}" id="__page8" showFooter="false" navButtonType="Emphasized" navButtonPress="action" action:wiring="\{'navButtonPress':\{'navigation':\{'routeName':'View1'\}\}\}">
+				<content>
+					<NavContainer id="__container5">
+						<pages>
+							<Page title="OCR Extract" id="__page9" showHeader="false" showFooter="false">
+								<content>
+									<IconTabBar selectedKey="__filter0" id="bar0" expandable="false">
+										<items>
+											<IconTabFilter text="Settings" id="filter0" icon="sap-icon://wrench">
+												<content>
+													<!--<Panel id="settingsPanel" headerText="Settings" expandable="true" expanded="true">-->
+													<!--<content>-->
+													<FlexBox width="100%" id="__box1" alignItems="Center" alignContent="Center" justifyContent="Center">
+														<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" editable="true" id="__form0" width="auto" backgroundDesign="Transparent">
+															<sap.ui.layout.form:content>
+																<VBox width="100%" direction="Column" id="__vbox0" justifyContent="Center" alignItems="Center">
+																	<sap.ui.unified:FileUploader xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" xmlns:sap.ui.unified="sap.ui.unified" id="fileUploader" placeholder="Upload pdf" width="auto" name="filename" uploadStart="onUploadStart"/>
+																	<RadioButtonGroup xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" xmlns="sap.m" width="auto" columns="2" selectedIndex="-1" id="optionButtons">
+																		<buttons>
+																			<RadioButton selected="true" groupName="__group0" text="txt" id="txtButton"/>
+																			<RadioButton groupName="__group0" text="xml" id="xmlButton"/>
+																		</buttons>
+																	</RadioButtonGroup>
+																	<Select xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" xmlns:sap.ui.core="sap.ui.core" selectedKey="1" id="pageSegModeBox">
+																		<items>
+																			<sap.ui.core:ListItem text="0 - Orientation and script detection (OSD) only" key="0" id="__item0"/>
+																			<sap.ui.core:ListItem text="1 - Automatic page segmentation with OSD" key="1" id="__item1"/>
+																			<!--<sap.ui.core:ListItem text="2" key="2" id="__item2"/>-->
+																			<sap.ui.core:ListItem text="3 - Fully automatic page segmentation, but no OSD" key="3" id="__item3"/>
+																			<sap.ui.core:ListItem text="4 - Assume a single column of text of variable sizes" key="4" id="__item4"/>
+																			<sap.ui.core:ListItem text="5 - Assume a single uniform block of vertically aligned text" key="5" id="__item5"/>
+																			<sap.ui.core:ListItem text="6 - Assume a single uniform block of text" key="6" id="__item6"/>
+																			<sap.ui.core:ListItem text="7 - Treat the image as a single text line" key="7" id="__item7"/>
+																			<sap.ui.core:ListItem text="8 - Treat the image as a single word" key="8" id="__item8"/>
+																			<sap.ui.core:ListItem text="9 - Treat the image as a single word in a circle" key="9" id="__item9"/>
+																			<sap.ui.core:ListItem text="10 - Treat the image as a single character" key="10" id="__item10"/>
+																			<sap.ui.core:ListItem text="11 - Sparse text. Find as much text as possible in no particular order" key="11" id="__item11"/>
+																			<sap.ui.core:ListItem text="12 - Sparse text with OSD" key="12" id="__item12"/>
+																			<sap.ui.core:ListItem text="13 - Raw line. Treat the image as a single text line." key="13" id="__item13"/>
+																		</items>
+																	</Select>
+																	<Select xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns="sap.m" xmlns:sap.ui.core="sap.ui.core" selectedKey="lstmPrecise" id="modelTypeBox">
+																		<items>
+																			<sap.ui.core:ListItem text="lstmPrecise" key="lstmPrecise" id="__m0"/>
+																			<sap.ui.core:ListItem text="lstmFast" key="lstmFast" id="__m1"/>
+																			<sap.ui.core:ListItem text="lstmStandard" key="lstmStandard" id="__m2"/>
+																			<sap.ui.core:ListItem text="noLstm" key="noLstm" id="__m3"/>
+																			<sap.ui.core:ListItem text="all" key="all" id="__m4"/>
+																		</items>
+																	</Select>
+																	<Button text="Process" width="auto" id="__button2" press="uploadFile" icon="sap-icon://accept" type="Emphasized"/>
+																	<BusyIndicator busy="true" busyIndicatorDelay="0" text="Please wait..." id="busyIndicator" visible="false"/>
+																</VBox>
+																<!--</sap.ui.layout:content>-->
+																<!--</sap.ui.layout:HorizontalLayout>-->
+															</sap.ui.layout.form:content>
+														</sap.ui.layout.form:SimpleForm>
+													</FlexBox>
+													<!--</content>-->
+													<!--</Panel>-->
+													<!--<Panel id="textPanel" headerText="OCR Result" expandable="true">-->
+													<!--<content>-->
+													<sap.ui.layout:VerticalLayout xmlns:sap.ui.layout="sap.ui.layout" width="100%" id="__layout1">
+														<sap.ui.layout:content>
+															<sap.ui.layout:HorizontalLayout xmlns:sap.ui.layout="sap.ui.layout" id="__layout2">
+																<Button text="Copy" width="auto" id="__button1" press="copyButton"/>
+															</sap.ui.layout:HorizontalLayout>
+															<TextArea id="ocrOutput" width="100%" height="auto" growing="true" showExceededText="true" editable="false"/>
+														</sap.ui.layout:content>
+													</sap.ui.layout:VerticalLayout>
+													<!--</content>-->
+													<!--</Panel>-->
+												</content>
+											</IconTabFilter>
+											<IconTabFilter text="Line Table" icon="sap-icon://database" iconColor="Neutral" id="filter1">
+												<content>
+													<!--<Panel id="tablePanel" headerText="Table" expandable="true" expanded="true">-->
+													<!--<content>-->
+													<sap.ui.comp.smarttable:SmartTable xmlns:sap.ui.comp.smarttable="sap.ui.comp.smarttable" dataReceived="onDataReceived" width="100%" direction="Column" fitContainer="true" header="OCR Line Table" enableAutoBinding="true" id="sTable" entitySet="Lines" initiallyVisibleFields="FILENAME,LINENUMBER,PAGENUMBER,TEXT" tableType="ResponsiveTable" showFullScreenButton="true"/>
+													<!--</content>-->
+													<!--</Panel>-->
+												</content>
+											</IconTabFilter>
+											<IconTabFilter text="Page Table" icon="sap-icon://database" iconColor="Neutral" id="filter2">
+												<content>
+													<sap.ui.comp.smarttable:SmartTable xmlns:sap.ui.comp.smarttable="sap.ui.comp.smarttable" width="100%" direction="Column" fitContainer="true" tableType="ResponsiveTable" header="OCR Page Table" enableAutoBinding="true" id="sTable2" entitySet="Pages" initiallyVisibleFields="FILENAME,TEXT" showFullScreenButton="true"/>
+												</content>
+											</IconTabFilter>
+											<IconTabFilter text="Text Anaysis" icon="sap-icon://line-charts" iconColor="Neutral" id="filter0_1553095974273"/>
+										</items>
+										<content>
+											<sap.ui.layout:VerticalLayout xmlns:sap.ui.layout="sap.ui.layout" width="100%" id="layout0">
+												<sap.ui.layout:content>
+													<sap.ui.layout:HorizontalLayout id="layout0_1553127947348">
+														<sap.ui.layout:content>
+															<Button xmlns="sap.m" text="Analyze" width="auto" id="taButton" press="testButton" icon="sap-icon://inspection" type="Emphasized"/>
+															<Select xmlns:sap.ui.core="sap.ui.core" selectedItem="Element sap.ui.core.ListItem#__item17" selectedKey="item1" selectedItemId="__item17" id="taSelect" autoAdjustWidth="true">
+																<items>
+																	<sap.ui.core:ListItem text="LINGANALYSIS_BASIC" key="LINGANALYSIS_BASIC" id="item17"/>
+																	<sap.ui.core:ListItem text="LINGANALYSIS_FULL" key="LINGANALYSIS_FULL" id="item18"/>
+																	<sap.ui.core:ListItem text="EXTRACTION_CORE" key="EXTRACTION_CORE" id="item19"/>
+																	<sap.ui.core:ListItem text="EXTRACTION_CORE_VOICEOFCUSTOMER" key="EXTRACTION_CORE_VOICEOFCUSTOMER" id="item20"/>
+																	<sap.ui.core:ListItem text="EXTRACTION_CORE_PUBLIC_SECTOR" key="EXTRACTION_CORE_PUBLIC_SECTOR" id="item21"/>
+																</items>
+															</Select>
+														</sap.ui.layout:content>
+													</sap.ui.layout:HorizontalLayout>
+													<TextArea id="taArea" width="100%" showExceededText="true" rows="3"/>
+													<TextArea id="taArea2" width="100%" showExceededText="true" growing="true" editable="false" rows="5"/>
+												</sap.ui.layout:content>
+											</sap.ui.layout:VerticalLayout>
+											<Table id="tableTA" fixedLayout="false" visible="false">
+												<columns>
+													<Column id="column0">
+														<header>
+															<Label text="Header 1" id="label0"/>
+														</header>
+													</Column>
+													<Column id="column1">
+														<header>
+															<Label text="Header 2" id="label1"/>
+														</header>
+													</Column>
+													<Column id="column2">
+														<header>
+															<Label text="Header 3" id="label2"/>
+														</header>
+													</Column>
+												</columns>
+											</Table>
+										</content>
+									</IconTabBar>
+								</content>
+							</Page>
+						</pages>
+					</NavContainer>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
