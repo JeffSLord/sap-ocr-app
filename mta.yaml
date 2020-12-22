@@ -42,6 +42,9 @@ modules:
     requires:
       - name: hdi_ocr_db
       - name: jeffauthorization-uaa
+
+  
+
 resources:
   - name: hdi_ocr_db
     parameters:

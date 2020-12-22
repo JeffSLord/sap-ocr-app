@@ -1,5 +1,7 @@
 # xsa-ocr
 
+Application for consuming SAP Optical Character Recognition services for uploaded documents.
+
 ## ui5
 Contains the micro-application for the frontend application.
 
